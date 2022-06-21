@@ -28,4 +28,4 @@ python example.py
 ```
 
 # Acknowledgements
-A big thank you to **Daniel Zint** for supplying us with the base code, that transformed into this little code-snippet.
+A big thank you to **Daniel Zint** for supplying us with the base code that transformed into this little code-snippet.
