@@ -44,22 +44,26 @@ def reorder_faces(vertices, faces):
 verts = [[1.0, 1.0, 0.0], [-1.0, 1.0, 1.0], [-1.0, -1.0, 0.0], [1.0, -1.0, 1.0]]
 faces = [[0, 1, 2], [0, 3, 2]]
 constraints = [[0, [1.0, 1.0, 1.0]]]
-
-faces = reorder_faces(np.array(verts), np.array(faces))
+is_constraint = [True, False, False, False]
+neighbours = [[1, 2, 3], [0, 2], [0, 1, 3], [0, 2]]
 
 more_verts = list()
 more_faces = list()
 more_constraints = list()
+more_is_constraint = list()
+more_neighbours = list()
 for i in range(500):
     more_verts.append(verts)
     more_faces.append(faces)
     more_constraints.append(constraints)
+    more_is_constraint.append(is_constraint)
+    more_neighbours.append(neighbours)
 
 
 print("----- Single ARAP Iteration -----")
 timer = Timer.Timer()
 timer.start()
-deformed_verts = FastARAP.deform(verts, faces, constraints)
+deformed_verts = FastARAP.deform(verts, faces, constraints, is_constraint, neighbours, 2, 0.5)
 timer.stop()
 print(str(timer))
 
@@ -67,7 +71,7 @@ print(str(timer))
 print("----- Sequential ARAP -----")
 timer = Timer.Timer()
 timer.start()
-deformed_verts = FastARAP.deform_multiple(more_verts, more_faces, more_constraints)
+deformed_verts = FastARAP.deform_multiple(more_verts, more_faces, more_constraints, more_is_constraint, more_neighbours, 2, 0.5)
 timer.stop()
 print(str(timer) + " for {0} Meshes".format(len(more_verts)))
 
@@ -76,6 +80,6 @@ print("----- Parallel ARAP -----")
 num_threads = 8
 timer = Timer.Timer()
 timer.start()
-deformed_verts = FastARAP.deform_async(more_verts, more_faces, more_constraints, num_threads)
+deformed_verts = FastARAP.deform_async(more_verts, more_faces, more_constraints, more_is_constraint, more_neighbours, 2, 0.5, num_threads)
 timer.stop()
 print(str(timer) + " for {0} Meshes using {1} Threads.".format(len(more_verts), num_threads))
