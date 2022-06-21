@@ -34,7 +34,6 @@ class ARAPDeformation {
 public:
 	ARAPDeformation();
 	void compute(BasicMesh& mesh, const BasicMesh& gtShape, unsigned int iterations, float weight);
-	Eigen::MatrixXf matti;
 
 private:
 	static Eigen::MatrixXf buildSystemMatrix(const BasicMesh& mesh, float weight);

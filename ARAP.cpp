@@ -24,11 +24,8 @@ Eigen::MatrixXf ARAPDeformation::buildSystemMatrix(const BasicMesh& mesh, float 
 }
 
 void ARAPDeformation::compute(BasicMesh& mesh, const BasicMesh& basemesh, unsigned int iterations, float weight) {
-
 	auto systemMatrix = this->buildSystemMatrix(mesh, weight);
-	this->matti = systemMatrix;
 	this->LU = systemMatrix.fullPivLu();
-
 	deform(mesh, basemesh, iterations, weight);
 }
 
