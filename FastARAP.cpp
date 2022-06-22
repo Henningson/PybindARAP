@@ -62,7 +62,7 @@ MESHES_VERTS deform_multiple(MESHES_VERTS meshes_vert,
 		BasicMesh mesh = {meshes_vert[i], meshes_faces[i], meshes_constraints[i], is_constraint[i], neighborhood[i]};
 			
 		ARAPDeformation a = ARAPDeformation();
-		a.compute(mesh, mesh, 2, 0.5);
+		a.compute(mesh, mesh, iterations, weight);
 		returnvec.push_back(mesh.vertices);
 	}
 
@@ -147,7 +147,7 @@ BasicMesh prepareBasicMesh() {
 	return {verts, faces, constraints, is_constrained, neighbors};
 }
 
-PYBIND11_MODULE(FastARAP, m) {
+PYBIND11_MODULE(ARAP, m) {
     m.doc() = "";
     m.def("deform", &deform, "Deform a single mesh instance.");
 	m.def("deform_multiple", &deform_multiple, "Deform multiple meshes inside a list.");
