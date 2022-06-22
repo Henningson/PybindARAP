@@ -24,7 +24,6 @@ mkdir build
 cd build
 cmake ..
 make
-cd ..
 ```
 An example is given in example.py. You can test the code with:
 ```
