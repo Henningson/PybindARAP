@@ -29,3 +29,4 @@ python example.py
 
 ## Acknowledgements
 A big thank you to **Daniel Zint** for supplying us with the base code that transformed into this little code-snippet.
+If you are interested in some awesome Geometry Processing work, check out ![his GitHub Account](https://github.com/DanielZint).
