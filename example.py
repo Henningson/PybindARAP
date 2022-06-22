@@ -1,9 +1,6 @@
-import sys
-sys.path.append("build/")
-
 import pickle
 import numpy as np
-import FastARAP
+import ARAP
 import Timer
 
 from tqdm import tqdm
@@ -63,7 +60,7 @@ for i in range(500):
 print("----- Single ARAP Iteration -----")
 timer = Timer.Timer()
 timer.start()
-deformed_verts = FastARAP.deform(verts, faces, constraints, is_constraint, neighbours, 2, 0.5)
+deformed_verts = ARAP.deform(verts, faces, constraints, is_constraint, neighbours, 2, 0.5)
 timer.stop()
 print(str(timer))
 
@@ -71,7 +68,7 @@ print(str(timer))
 print("----- Sequential ARAP -----")
 timer = Timer.Timer()
 timer.start()
-deformed_verts = FastARAP.deform_multiple(more_verts, more_faces, more_constraints, more_is_constraint, more_neighbours, 2, 0.5)
+deformed_verts = ARAP.deform_multiple(more_verts, more_faces, more_constraints, more_is_constraint, more_neighbours, 2, 0.5)
 timer.stop()
 print(str(timer) + " for {0} Meshes".format(len(more_verts)))
 
@@ -80,6 +77,6 @@ print("----- Parallel ARAP -----")
 num_threads = 8
 timer = Timer.Timer()
 timer.start()
-deformed_verts = FastARAP.deform_async(more_verts, more_faces, more_constraints, more_is_constraint, more_neighbours, 2, 0.5, num_threads)
+deformed_verts = ARAP.deform_async(more_verts, more_faces, more_constraints, more_is_constraint, more_neighbours, 2, 0.5, num_threads)
 timer.stop()
 print(str(timer) + " for {0} Meshes using {1} Threads.".format(len(more_verts), num_threads))
