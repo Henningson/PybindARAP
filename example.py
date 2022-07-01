@@ -1,8 +1,7 @@
 import pickle
 import numpy as np
-import ARAP
 import Timer
-
+import ARAP
 from tqdm import tqdm
 
 
